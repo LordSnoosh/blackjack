@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>First jQuery!</title>
+        <title>Shotgun Sabacc</title>
     <link rel="stylesheet" 
         href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" 
         integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" 
@@ -15,7 +15,59 @@
        crossorigin="anonymous"></script>
     <script defer src="js/app.js"></script>
     </head>
-<body>
-    <h1>blobblewobble</h1>
+<body onload="parent.init()">
+
+    <h1>Shotgun Sabacc</h1>
+
+<div id="poker_table" class="poker-table" data-uid="">
+    <div id='player-seat' class="seat">
+        <div class="card-holder">
+        <div class="card-holder1">player card 1</div>
+        <div class="card-holder2">player card 2</div>
+    </div>
+    <div class="name-chips">
+        <div class="player-name">Player</div>
+        <div class="chips">$1000.00</div>
+    </div>
+    <div class="bet">$80.00</div>
+</div>
+
+<div id="dealer-seat" class="seat">
+    <div class="card-holder">
+        <div class="card holecard1">dealer card 1</div>
+        <div class="card holecard2">dealer card 2</div>
+    </div>
+    <div class="name-chips">
+        <div class="player-name">Dealer</div>
+        <div class="chips">$1000.00</div>
+    </div>
+    <div class="bet">$80.00</div>
+</div>
+
+<div id="board">
+    <div id="flop1" class="card boardcard"></div>
+    <div id="flop2" class="card boardcard"></div>
+    <div id="flop3" class="card boardcard"></div>
+    <!-- <div id="turn" class="card boardcard"></div>
+    <div id="river" class="card boardcard"></div> -->
+</div>
+
+<div id="pot">
+    <div id="current-pot"></div>
+    <div id="total-pot">Total pot: $1520.25</div>
+</div>
+
+<div id="action-options">
+    <div id="fold-button" class="action-button">Fold</div>
+    <div id="call-button" class="action-button">Call $80</div>
+    <div id="raise-button" class="action-button">Raise $120</div>
+</div>
+
+<div id="setup-options">
+    <div id="name-button" class="setup-button">Name</div>
+    </div>
+
 </body>
 </html>
+
+
