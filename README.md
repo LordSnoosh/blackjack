@@ -1,2 +1,3 @@
 # sabacc-game-proj1
-With a base of blackjack and draw style poker, to make a simple scaled down version of the SW card game.
+Game parameters have moved too far away from the original concept of a blackjack game with star wars flair.
+*------------This will now be a simple game of blackjack
