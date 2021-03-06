@@ -1,5 +1,18 @@
+/* .chips {
+} */
+
+/* .response-normal {
+  background-color: #ffffff;
+}
+.response-warning {
+  background-color: #ff0000;
+} */
+
+/* #name-button {
+} */
+
 body {
-    display: flex;
+  display: flex;
   align-items: center;
 }
 
@@ -17,7 +30,6 @@ body {
   text-align: center;
   top: 245px;
 }
-
 #seat0 {
   left: 100px;
   top: 340px;
@@ -30,7 +42,6 @@ body {
   left: 40px;
   top: -20px;
 }
-
 #seat1 {
   left: 0px;
   top: 165px;
@@ -58,7 +69,6 @@ body {
 #hit-button {
   left: 160px;
 }
-
 #action-options {
   height: 100px;
   left: 100px;
@@ -66,10 +76,6 @@ body {
   top: 450px;
   width: 500px;
 }
-
-/* #name-button {
-} */
-
 #game-response {
   border-color: black;
   border-radius: 2px;
@@ -84,12 +90,8 @@ body {
   top: 5px;
   width: 420px;
 }
-
-
 .poker-table {
-  /* background-image: url('../images/poker_table.png'); */
   background-color: green;
-  /* background-repeat: no-repeat; */
   height: 411px;
   width: 745px;
 }
@@ -98,7 +100,6 @@ body {
   position: bottom;
   width: 150px;
 }
-
 .name-chips {
   background-color: gray;
   border-radius: 2px;
@@ -110,14 +111,9 @@ body {
   top: 50px;
   width: 140px;
 }
-
 .player-name {
   width: 100%;
 }
-
-/* .chips {
-} */
-
 /*card attributes*/
 .card {
   background-image: url("../images/cardback.gif");
@@ -126,7 +122,6 @@ body {
   height: 73px;
   width: 50px;
 }
-
 .holecards {
   float: left;
   height: 73px;
@@ -135,19 +130,16 @@ body {
   top: 0;
   width: 102px;
 }
-
 .holecard1 {
   left: 0;
   /* position: absolute; */
   top: 0;
 }
-
 .holecard2 {
   left: 50px;
   /* position: absolute; */
   top: 0;
 }
-
 /* current bet for player/dealer */
 .bet {
   color: black;
@@ -156,7 +148,7 @@ body {
   /* position: absolute; */
   top: 0;
 }
-
+/* hit stay split */
 .action-button {
   background-color: silver;
   border-radius: 2px;
@@ -168,11 +160,4 @@ body {
   padding: 10px 5px 0 5px;
   /* position: absolute; */
   top: 0;
-}
-
-.response-normal {
-  background-color: #ffffff;
-}
-.response-warning {
-  background-color: #ff0000;
 }
