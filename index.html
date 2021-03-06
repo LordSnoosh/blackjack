@@ -12,46 +12,54 @@
     <style></style>
     </head>
 <!-- <body onload="parent.init()"> -->
+<table>
+    <thead>
+        <tr>  
+           <th colspan="4">Blackjack!</th> 
+        </tr>
+        </thead>
+        
+<tbody id="poker_table" class="poker-table" data-uid="">
+    <tr id="seat0" class="seat">
+     <td class="holecards">
+        <td class="card holecard1">player card 1</td>
+        <td class="card holecard2">player card 2</td>
+    </td>
+    <td class="name-chips">
+        <td class="player-name">Player</td>
+        <td class="chips">$1000.00</td>
+        <td class="bet">$80.00</td>
+    </td>
+</tr>
 
-    <h1>Blackjack!</h1>
+<tr id="seat1" class="seat">
+    <td class="holecards">
+        <td class="card holecard1">dealer card 1</td>
+        <td class="card holecard2">dealer card 2</td>
+    </td>
+    <td class="name-chips">
+        <td class="player-name">Dealer</td>
+        <td class="chips">$1000.00</td>
+        <td class="bet">$80.00</td>
+    </td>
+</tr>
 
-<div id="poker_table" class="poker-table" data-uid="">
-    <div id="seat0" class="seat">
-        <div class="holecards">
-        <div class="card holecard1">player card 1</div>
-        <div class="card holecard2">player card 2</div>
-    </div>
-    <div class="name-chips">
-        <div class="player-name">Player</div>
-        <div class="chips">$1000.00</div>
-    </div>
-    <div class="bet">$80.00</div>
-</div>
+<tr id="pot">
+    <td id="current-pot"></td>
+    <td id="total-pot">Total pot: $1520.25</td>
+</tr>
 
-<div id="seat1" class="seat">
-    <div class="holecards">
-        <div class="card holecard1">dealer card 1</div>
-        <div class="card holecard2">dealer card 2</div>
-    <div class="name-chips">
-        <div class="player-name">Dealer</div>
-        <div class="chips">$1000.00</div>
-    </div>
-    <div class="bet">$80.00</div>
-</div>
+<tr id="action-options">
+    <td id="stay-button" class="action-button">Stay</td>
+    <td id="hit-button" class="action-button">Hit</td>
+    <td id="split-button" class="action-button">Split</td>
+</tr>
+<tr>
+<td id="game-response" class="response-normal">Game response</td>
+</tr>
+</tbody>
 
-<div id="pot">
-    <div id="current-pot"></div>
-    <div id="total-pot">Total pot: $1520.25</div>
-</div>
-
-<div id="action-options">
-    <div id="stay-button" class="action-button">Fold</div>
-    <div id="hit-button" class="action-button">Call $80</div>
-    <div id="split-button" class="action-button">Raise $120</div>
-</div>
-
-<div id="game-response" class="response-normal">Game response</div>
-
+</table>
 </body>
 </html>
 
