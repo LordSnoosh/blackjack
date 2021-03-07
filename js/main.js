@@ -4,13 +4,13 @@ const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', '
 
 // Build a 'master' deck of 'card' objects used to create shuffled decks
 const masterDeck = buildMasterDeck();
-renderDeckInContainer(masterDeck, document.getElementById('master-deck-container'));
+renderDeckInContainer(masterDeck, document.getElementById('holecards'));
 
 /*----- app's state (variables) -----*/
 let shuffledDeck;
 
 /*----- cached element references -----*/
-const shuffledContainer = document.getElementById('shuffled-deck-container');
+const shuffledContainer = document.getElementById('holecards');
 
 /*----- event listeners -----*/
 document.querySelector('button').addEventListener('click', renderShuffledDeck);
@@ -30,11 +30,11 @@ function renderShuffledDeck() {
 }
 
 function renderDeckInContainer(deck, container) {
-  container.innerHTML = '';
+  container.innerHTML = 'null';
   // Let's build the cards as a string of HTML
   // Use reduce when you want to 'reduce' the array into a single thing - in this case a string of HTML markup 
-  const cardsHtml = deck.reduce(function(html, card) {
-    return html + `<div class="card ${card.face}"></div>`;
+  const cardsHtml = deck.reduce(function(src, card) {
+    return src + `<div class="card ${card.face}"></div>`;
   }, '');
   container.innerHTML = cardsHtml;
 }
