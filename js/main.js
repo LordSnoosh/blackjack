@@ -13,7 +13,7 @@ let shuffledDeck;
 const shuffledContainer = document.getElementById('shuffled-deck-container');
 
 /*----- event listeners -----*/
-document.querySelector('.shuffle-button').addEventListener('click', renderShuffledDeck);
+document.querySelector('button').addEventListener('click', renderShuffledDeck);
 
 /*----- functions -----*/
 function renderShuffledDeck() {
@@ -34,7 +34,7 @@ function renderDeckInContainer(deck, container) {
   // Let's build the cards as a string of HTML
   // Use reduce when you want to 'reduce' the array into a single thing - in this case a string of HTML markup 
   const cardsHtml = deck.reduce(function(html, card) {
-    return html + `<td class="card ${card.face}"></td>`;
+    return html + `<div class="card ${card.face}"></div>`;
   }, '');
   container.innerHTML = cardsHtml;
 }
