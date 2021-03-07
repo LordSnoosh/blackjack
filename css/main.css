@@ -54,14 +54,16 @@ body {
   left: 50px;
   top: 100px;
 }
+ /* 
 #button {
   background-image: url("../images/dealerbutton.png");
   background-repeat: no-repeat;
   background-size: 100%;
   height: 19px;
-  /* position: absolute; */
+ position: absolute; 
   width: 24px;
-}
+}*/
+
 #stay-button {
   position: relative;
   max-height: 20px;
@@ -181,7 +183,7 @@ body {
   /* position: absolute; */
   top: 0;
 }
-/* hit stay split */
+/* hit stay split shuffle */
 .action-button {
   background-color: silver;
   border-radius: 2px;
@@ -496,3 +498,5 @@ body {
   .card.east.shadow,
   .card.E.shadow {
     box-shadow: -2px 2px 3px 0 rgba(41, 41, 41, 0.75); }
+
+    
