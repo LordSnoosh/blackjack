@@ -473,3 +473,26 @@ body {
 
 .card.back-red {
   background-image: url("../images/backs/red.svg"); }
+
+  .card.west,
+.card.W {
+  transform: rotate(90deg);
+  margin: auto 0.75em; }
+  .card.west.shadow,
+  .card.W.shadow {
+    box-shadow: 2px -2px 3px 0 rgba(41, 41, 41, 0.75); }
+
+.card.north,
+.card.N {
+  transform: rotate(180deg); }
+  .card.north.shadow,
+  .card.N.shadow {
+    box-shadow: -2px -2px 3px 0 rgba(41, 41, 41, 0.75); }
+
+.card.east,
+.card.E {
+  transform: rotate(270deg);
+  margin: auto 0.75em; }
+  .card.east.shadow,
+  .card.E.shadow {
+    box-shadow: -2px 2px 3px 0 rgba(41, 41, 41, 0.75); }
