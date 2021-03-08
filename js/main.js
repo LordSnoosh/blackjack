@@ -24,7 +24,7 @@ var bj = {
       bj.hpstand = document.getElementById("player-stand");
       bj.hppoints = document.getElementById("player-points");
       bj.hphand = document.getElementById("player-cards");
-      bj.hpcon = document.getElementById("player-control");
+      bj.hpcon = document.getElementById("player-buttons");
   
       document.getElementById("pb-start").addEventListener("click", bj.start);
       document.getElementById("pb-hit").addEventListener("click", bj.hit);
