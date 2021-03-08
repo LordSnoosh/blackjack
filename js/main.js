@@ -85,7 +85,7 @@ draw : function() {
   }
 },
 
-points:function() {
+points : function() {
     var aces = 0, points = 0;
     for (let i of (gc.turn ? gc.dealerCurHand : gc.playerCurHand)) {
         if (i.n == 1) { aces++; }
@@ -110,7 +110,7 @@ points:function() {
       }
 },
 
-check:function() {
+check : function() {
     var winner = null, message = "";
     if (gc.playerCurHand.length==2 && gc.dealerCurHand.length==2){
         if (gc.playerCurPoints==21 && gc.dealerCurPoints==21){
@@ -119,7 +119,7 @@ check:function() {
         if (winner==null && gc.playerCurPoints==21) {
             winner = 0; message = "Player wins with blackjack!";
         }
-        if (winner==null && gc.==21) {
+        if (winner==null && gc.dealerCurPoints==21) {
             winner = 1; message = "Dealer wins with Blackjack!";
         }
     }
@@ -163,37 +163,30 @@ hit:function() {
   if (winner==null) {gc.next();}
 },
 
-stand:function() {
+stand : function() {
   if (gc.turn) {
-    gc.dealerStay = true;
-    gc.dealerStand.classList.add("stood");
+    gc.dealerStay = true; gc.dealerStand.classList.add("stood");
   } else {
-    gc.playerstay = true;
-    gc.playerStand.classList.add("stood");
+    gc.playerstay = true; gc.playerStand.classList.add("stood");
   }
-  var winner =
-    gc.playerStay && gc.dealerStay
-      ? gc.check()
-      : null;
-  if (winner == null) {
-    gc.next();
-  }
+  var winner = (gc.playerStay && gc.dealerStay) ? gc.check() : null;
+  if (winner==null) { gc.next(); }
 },
 
-next:function() {
+next : function() {
     gc.turn = gc.turn==0 ? 1 : 0;
     if (gc.turn==1) {
         if (gc.dealerStay) {gc.turn = 0; }
-        else {gc.dealerAi();}
+        else {gc.dealerAi(); }
     }
     else {
-        if (gc.playerstay) {gc.turn = 1; gc.dealerAi() ;}
+        if (gc.playerStay) { gc.turn = 1; gc.dealerAi(); }
     }
 },
 
-dealerAi:function() { if (gc.turn) {
-    if (gc.dealerPoints >= gc.safety) {gc.stand();}
-    else {gc.hit();}
+dealerAi : function() { if (gc.turn) {
+    if (gc.dealerPoints >= gc.safety) {gc.stand(); }
+    else { gc.hit(); }
 }}
 };
 window.addEventListener("DOMContentLoaded", gc.init);
