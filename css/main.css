@@ -8,7 +8,7 @@
 #dealer-stand, #player-stand {
   display: none;
   padding: 10px;
-  background: #ab3456;
+  background: #c42c57;
   color: rgb(209, 157, 157);
 }
 #dealer-stand.stood, #player-stand.stood { display: inline-block; }
@@ -27,7 +27,7 @@
   padding: 12px;
   width: 100%;
   background: #ab3456;
-  border: 1px solid rgb(221, 172, 172);
+  border: 2px solid rgb(221, 172, 172);
 }
 
 

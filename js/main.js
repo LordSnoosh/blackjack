@@ -34,20 +34,14 @@ init : function() {
 },
 
 start : function() {
-  gc.deck = [];
-  gc.dealerCurHand = [];
-  gc.playerCurHand = [];
-  gc.dealerPoints = 0;
-  gc.playerPoints = 0;
-  gc.dealerStay = false;
-  gc.playerStay = false;
-  gc.dealerCurPoints.innerHTML = 0;
-  gc.playerCurPoints.innerHTML = 0;
-  gc.dealerHand.innerHTML = "";
-  gc.playerHand.innerHTML = "";
-  gc.dealerStand.classList.remove("stood");
-  gc.playerStand.classList.remove("stood");
+  gc.deck = []; gc.dealerCurHand = []; gc.playerCurHand = [];
+  gc.dealerPoints = 0; gc.playerPoints = 0;
+  gc.dealerStay = false; gc.playerStay = false;
+  gc.dealerCurPoints.innerHTML = "?"; gc.playerCurPoints.innerHTML = 0;
+  gc.dealerHand.innerHTML = ""; gc.playerHand.innerHTML = "";
+  gc.dealerStand.classList.remove("stood"); gc.playerStand.classList.remove("stood");
   gc.playerButtons.classList.add("started");
+  
   for (let i = 0; i < 4; i++) {
     for (let j = 1; j < 14; j++) {
       gc.deck.push({ s: i, n: j });
@@ -58,31 +52,23 @@ start : function() {
     gc.deck[i] = gc.deck[j];
     gc.deck[j] = tempDeck;
   }
-  gc.turn = 0;
-  gc.draw();
-  gc.turn = 1;
-  gc.draw();
-  gc.turn = 0;
-  gc.draw();
-  gc.turn = 1;
-  gc.draw();
-  gc.turn = 0;
-  gc.points();
-  gc.turn = 1;
-  gc.points();
+  gc.turn = 0; gc.draw();
+  gc.turn = 1; gc.draw();
+  gc.turn = 0; gc.draw();
+  gc.turn = 1; gc.draw();
+  gc.turn = 0; gc.points();
+  gc.turn = 1; gc.points();
   var winner = gc.check();
-  if (winner == null) {
-    gc.turn = 0;
-  }
+  if (winner == null) { gc.turn = 0;}
 },
-// /*----- constants -----*/\
+// /*----- constants -----*/
 
-decksymbols: ["&hearts;", "&diams;", "&clubs;", "&spades;"],
-deckNumbers: { 1 : "A", 11 : "J", 12 : "Q", 13 : "K"},
+dsymbols: ["&hearts;", "&diams;", "&clubs;", "&spades;"],
+dnumbers: { 1 : "A", 11 : "J", 12 : "Q", 13 : "K"},
 draw : function() {
   var card = gc.deck.pop(),
     cardh = document.createElement("div"),
-    cardv = (gc.deckNumbers[card.n] ? gc.deckNumbers[card.n] : card.n) + gc.decksymbols[card.s];
+    cardv = (gc.dnumbers[card.n] ? gc.dnumbers[card.n] : card.n) + gc.dsymbols[card.s];
   cardh.className = "gc-card";
   cardh.innerHTML = cardv ;
 
@@ -103,12 +89,12 @@ points:function() {
     var aces = 0, points = 0;
     for (let i of (gc.turn ? gc.dealerCurHand : gc.playerCurHand)) {
         if (i.n == 1) { aces++; }
-        else if (i.n >= 11 && i.n <= 13) { points += 10; }
+        else if (i.n>=11 && i.n<=13) { points += 10; }
         else { points += i.n; }
     }
     if (aces!=0) {
         var minmax = [];
-        for (let elevens =0 ; elevens <= aces; elevens++) {
+        for (let elevens=0 ; elevens<=aces; elevens++) {
           let calc = points + (elevens * 11) + (aces-elevens * 1);
           minmax.push(calc);
         }
@@ -133,15 +119,15 @@ check:function() {
         if (winner==null && gc.playerCurPoints==21) {
             winner = 0; message = "Player wins with blackjack!";
         }
-        if (winner==null && gc.dealerCurPoints==21) {
+        if (winner==null && gc.==21) {
             winner = 1; message = "Dealer wins with Blackjack!";
         }
     }
     if (winner == null) {
-        if (gc.playerCurPoints > 21) {
+        if (gc.playerCurPoints>21) {
             winner = 1; message = "You busted! Dealer wins!";
         }
-        if (gc.dealerCurPoints > 21) {
+        if (gc.dealerCurPoints>21) {
             winner = 0; message = "The Dealer busted! You won!";
         }
     }
@@ -149,7 +135,7 @@ check:function() {
         if (gc.dealerCurPoints > gc.playerCurPoints) {
             winner = 1; message =  "The Dealer won with " + gc.dealerCurPoints + " points!";
         }
-        else if (gc.playerCurPoints > gc.dealerCurPoints) {
+        else if (gc.dealerCurPoints > gc.playerCurPoints) {
             winner = 0; message = "You won with " + gc.playerCurPoints + " points!";
         }
         else {
@@ -166,23 +152,12 @@ check:function() {
 },
 
 hit:function() {
-  gc.draw();
-  gc.points();
-  if (
-    gc.turn == 0 &&
-    gc.playerCurPoints == 21 &&
-    !gc.playerStay
-  ) {
-    gc.playerStay = true;
-    gc.playerStay.classList.add("stood");
+  gc.draw(); gc.points();
+  if ( gc.turn==0 && gc.playerCurPoints==21 && !gc.playerStay) {
+    gc.playerStay = true; gc.playerStand.classList.add("stood");
   }
-  if (
-    gc.turn == 0 &&
-    gc.dealerCurPoints == 21 &&
-    !gc.dealerStay
-  ) {
-    gc.dealerStay = true;
-    gc.dealerStay.classList.add("stood");
+  if ( gc.turn == 0 && gc.dealerCurPoints == 21 && !gc.dealerStay) {
+    gc.dealerStay = true; gc.dealerStand.classList.add("stood");
   }
   var winner = gc.check();
   if (winner==null) {gc.next();}
