@@ -4,7 +4,7 @@
 }
 #dealer-data, #player-data {
   padding: 10px;
-  color: darkorchid;
+  color: rgb(214, 153, 245);
 }
 #dealer-stand, #player-stand {
   display: none;

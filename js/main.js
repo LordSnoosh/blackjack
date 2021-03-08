@@ -19,9 +19,39 @@ playerStay: false,
 turn: 0
 }
 
+// ON-CLICK EVENTS
+document.getElementById("pb-start").addEventListener("click", gameContent.start);
+document.getElementById("pb-hit").addEventListener("click",gameContent.hit )
+document.getElementById("pb-stand").addEventListener("click", gameContent.stand)
 
+function init() {
+    gameContent.dealerStand = document.getElementById("dealer-stand");
+    gameContent.dealerPoints = document.getElementById("dealer-points");
+    gameContent.dealerHand = document.getElementById("dealer-cards");
+    gameContent.playerStand = document.getElementById("player-stand");
+    gameContent.playerPoints = document.getElementById("player-points")
+    gameContent.playerHand = document.getElementById("player-cards");
+    gameContent.playerButtons = document.getElementById("play-buttons");
+}
 
+function start() {
+    gameContent.deck = [];
+    gameContent.dealerCurHand = [];
+    gameContent.playerCurHand = [];
+    gameContent.dealerPoints = 0;
+    gameContent.playerPoints = 0;
+    gameContent.dealerStay = false;
+    gameContent.playerStay = false;
+    gameContent.dealerCurPoints.innerHTML = "$";
+    gameContent.playerCurPoints.innerHTML = 0;
+    gameContent.dealerHand.innerHTML = "";
+    gameContent.playerHand.innerHTML = "";
+    gameContent.dealerStand.classList.remove("stood");
+    gameContent.playerStand.classList.remove("stood");
+    gameContent.playerButtons.classList.add("started")
+}
 // /*----- constants -----*/
+
 // const suits = ['s', 'c', 'd', 'h'];
 // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
 
