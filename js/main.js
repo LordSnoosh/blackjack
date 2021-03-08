@@ -50,7 +50,15 @@ function start() {
     gameContent.playerStand.classList.remove("stood");
     gameContent.playerButtons.classList.add("started")
 }
-// /*----- constants -----*/
+// /*----- constants -----*/\
+
+decksymbols : ["&hearts;", "&diams;", "&clubs;", "&spades"];
+deckNumbers : { 1 ; "A", 11 ; "J", 12 ; "Q", 13 ; "K"};
+
+function draw () {
+    var card = gameContent.deck.pop(),
+    
+}
 
 // const suits = ['s', 'c', 'd', 'h'];
 // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
