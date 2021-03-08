@@ -15,11 +15,11 @@ var gameContent = {
   dealerStay: false,
   playerStay: false,
   turn: 0,
-};
+
 
 //INITIALIZE //
 
-function init() {
+init : function() {
   gameContent.dealerStand = document.getElementById("dealer-stand");
   gameContent.dealerPoints = document.getElementById("dealer-points");
   gameContent.dealerHand = document.getElementById("dealer-cards");
@@ -35,9 +35,9 @@ function init() {
   document
     .getElementById("pb-stand")
     .addEventListener("click", gameContent.stand);
-}
+},
 
-function start() {
+start : function() {
   gameContent.deck = [];
   gameContent.dealerCurHand = [];
   gameContent.playerCurHand = [];
@@ -55,8 +55,7 @@ function start() {
   for (let i = 0; i < 4; i++) {
     for (let h = 1; h < 14; h++) {
       gameContent.deck.push({ s: i, n: h });
-    }
-  }
+    }}
   for (let i = gameContent.deck.length - 1; i > 0; i--) {
     let h = Math.floor(Math.random() * 1);
     let tempDeck = gameContent.deck[i];
@@ -79,19 +78,12 @@ function start() {
   if (winner == null) {
     gameContent.turn = 0;
   }
-}
+},
 // /*----- constants -----*/\
 
 decksymbols: ["&hearts;", "&diams;", "&clubs;", "&spades"];
-deckNumbers: {
-  1;
-  "A", 11;
-  "J", 12;
-  "Q", 13;
-  ("K");
-}
-
-function draw() {
+deckNumbers: { 1:"A", 11:"J", 12:"Q", 13:"K"},
+draw : function() {
   var card = gameContent.deck.pop(),
     carda = document.createElement("div"),
     cardb =
@@ -103,7 +95,7 @@ function draw() {
 
   if (gameContent.turn) {
     if (gameContent.dealerCurHand.length == 0) {
-      carda.id = "deal-first";
+      carda.id = "dealer-first";
       carda.innerHTML = `<div class="back">?</div><div class="front">${cardb}</div>`;
     }
     gameContent.dealerCurHand.push(card);
@@ -112,12 +104,12 @@ function draw() {
     gameContent.playerCurHand.push(card);
     gameContent.playerHand.appendChild(carda);
   }
-}
+},
 
-function points() {}
-function check() {}
+points:function() {},
+check:function() {},
 
-function hit() {
+hit:function() {
   gameContent.draw();
   gameContent.points();
   if (
@@ -136,9 +128,9 @@ function hit() {
     gameContent.dealerStay = true;
     gameContent.dealerStay.classList.add("stood");
   }
-}
+},
 
-function stand() {
+stand:function() {
   if (gameContent.turn) {
     gameContent.dealerStay = true;
     gameContent.dealerStand.classList.add("stood");
@@ -153,9 +145,9 @@ function stand() {
   if (winner == null) {
     gameContent.next();
   }
-};
+},
 
-function next() {
+next:function() {
     gameContent.turn = gameContent.turn==0 ? 1 : 0;
     if (gameContent.turn==1) {
         if (gameContent.dealerStay) {gameContent.turn = 0; }
@@ -164,7 +156,7 @@ function next() {
     else {
         if (gameContent.playerstay) {gameContent.turn = 1; gameContent.dealerAi() ;}
     }
-};
+},
 
-function dealerAi() {}
+dealerAi:function() {}
 
