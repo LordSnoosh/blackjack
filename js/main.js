@@ -1,3 +1,26 @@
+
+var gameContent = {
+
+dealerStand: null,
+dealerPoints: null,
+dealerHand: null,
+playerStand: null,
+playerPoints: null,
+playerHand: null,
+playerButtons: null,
+deck: [],
+dealerCurHand: [],
+playerCurHand: [],
+dealerCurPoints: 0,
+playerCurPoints: 0,
+safety: 18,
+dealerStay: false,
+playerStay: false,
+turn: 0
+}
+
+
+
 // /*----- constants -----*/
 // const suits = ['s', 'c', 'd', 'h'];
 // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];

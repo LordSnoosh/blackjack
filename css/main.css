@@ -31,10 +31,18 @@
   width: 100%
 }
 
+#pb-stand, #pb-hit {display: none;}
+#play-buttons.started { grid-template-columns: 50% 50%;}
+#play-buttons.started #pb-start { display: none; }
+#play-buttons.started #pb-hit, #play-buttons.started #pb-stand {display: block;}
+
 /* DEALER CARDS! */
 #dealer-wrap {background: pink;}
 #dealer-data { background: grey;}
 
+/* PLAYER CARDS! */
+#player-wrap { background: pink;}
+#player-data { background: grey;}
 
 /* CARDS! */
 #dealer-cards, #player-cards {
