@@ -1,6 +1,24 @@
+#play-buttons {
+  display: grid;
+  grid-template-columns: 50px;
+  grid-template-rows: 34px;
+  grid-gap: 5vmin;
+  padding: 5px;
+  background-color: green;
+}
 
-/* CARDS!!!*/
+#play-buttons input {
+  box-sizing: border-box;
+  border: 0;
+  padding: 10px 0;
+  background: red;
+  color: blue;
+  width: 100%
+}
 
+
+
+/* CARDS!!! */
 .card.diamonds.A,
 .card.dA,
 .card.♦A {
