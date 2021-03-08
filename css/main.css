@@ -1,3 +1,18 @@
+
+#dealer-wrap, #player-wrap {
+  min-height: 120px;
+}
+#dealer-data, #player-data {
+  padding: 10px;
+  color: darkorchid;
+}
+#dealer-stand, #player-stand {
+  display: none;
+  padding: 10px;
+  background: #ab3456;
+  color: brown;
+}
+
 #play-buttons {
   display: grid;
   grid-template-columns: 50px;
