@@ -17,7 +17,7 @@
   display: grid;
   grid-template-columns: 50px;
   grid-template-rows: 34px;
-  grid-gap: 5vmin;
+  gap: 5vmin;
   padding: 5px;
   background-color: green;
 }
@@ -31,6 +31,18 @@
   width: 100%
 }
 
+/* DEALER CARDS! */
+#dealer-wrap {background: pink;}
+#dealer-data { background: grey;}
+
+
+/* CARDS! */
+#dealer-cards, #player-cards {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  gap: 12px;
+  padding: 10px;
+}
 
 
 /* CARDS!!! */
