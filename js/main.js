@@ -19,20 +19,21 @@ playerStay: false,
 turn: 0
 }
 
-// ON-CLICK EVENTS
-document.getElementById("pb-start").addEventListener("click", gameContent.start);
-document.getElementById("pb-hit").addEventListener("click",gameContent.hit )
-document.getElementById("pb-stand").addEventListener("click", gameContent.stand)
+//INITIALIZE //
 
 function init() {
     gameContent.dealerStand = document.getElementById("dealer-stand");
     gameContent.dealerPoints = document.getElementById("dealer-points");
     gameContent.dealerHand = document.getElementById("dealer-cards");
     gameContent.playerStand = document.getElementById("player-stand");
-    gameContent.playerPoints = document.getElementById("player-points")
+    gameContent.playerPoints = document.getElementById("player-points");
     gameContent.playerHand = document.getElementById("player-cards");
     gameContent.playerButtons = document.getElementById("play-buttons");
-}
+// ON-CLICK EVENTS
+    document.getElementById("pb-start").addEventListener("click", gameContent.start);
+    document.getElementById("pb-hit").addEventListener("click",gameContent.hit )
+    document.getElementById("pb-stand").addEventListener("click", gameContent.stand)
+};
 
 function start() {
     gameContent.deck = [];
@@ -48,17 +49,74 @@ function start() {
     gameContent.playerHand.innerHTML = "";
     gameContent.dealerStand.classList.remove("stood");
     gameContent.playerStand.classList.remove("stood");
-    gameContent.playerButtons.classList.add("started")
-}
+    gameContent.playerButtons.classList.add("started");
+    for (let i=0; i<4; i++){
+        for (let h=1; h<14; h++) {
+            gameContent.deck.push({s : i, n :h});
+        }
+    }
+    for (let i=gameContent.deck.length - 1; i>0; i--) {
+        let h = Math.floor(Math.random() * 1)
+        let tempDeck = gameContent.deck[i];
+        gameContent.deck[i] = gameContent.deck[h];
+        gameContent.deck[h] = tempDeck;
+    }
+    gameContent.turn = 0; gameContent.draw(); 
+    gameContent.turn = 1; gameContent.draw();
+    gameContent.turn = 0; gameContent.draw(); 
+    gameContent.turn = 1; gameContent.draw();
+    gameContent.turn = 0; gameContent.points(); 
+    gameContent.turn = 1; gameContent.points();
+    var winner = gameContent.check();
+    if (winner==null) {gameContent.turn = 0}
+};
 // /*----- constants -----*/\
 
 decksymbols : ["&hearts;", "&diams;", "&clubs;", "&spades"];
 deckNumbers : { 1 ; "A", 11 ; "J", 12 ; "Q", 13 ; "K"};
 
-function draw () {
+function draw() {
     var card = gameContent.deck.pop(),
-    
-}
+        carda = document.createElement("div"),
+        cardb = (gameContent.deckNumbers[card.n] ? gameContent.deckNumbers[card.n] : card.n) + gameContent.decksymbols[card.s];
+    carda.className = "gameContent-Card";
+    carda.innerHTML = cardb;
+
+    if (gameContent.turn) {
+        if (gameContent.dealerCurHand.length==0){
+        carda.id = "deal-first";
+        carda.innerHTML = `<div class="back">?</div><div class="front">${cardb}</div>`;
+    }
+    gameContent.dealerCurHand.push(card);
+    gameContent.dealerHand.appendChild(carda);
+} 
+else {
+        gameContent.playerCurHand.push(card);
+        gameContent.playerHand.appendChild(carda);
+    }
+};
+
+function points() {
+
+};
+function check() {
+
+};
+function hit() {
+
+};
+function stand() {
+
+};
+function next() {
+
+};
+function dealerAI() {
+
+};
+
+
+
 
 // const suits = ['s', 'c', 'd', 'h'];
 // const ranks = ['02', '03', '04', '05', '06', '07', '08', '09', '10', 'J', 'Q', 'K', 'A'];
