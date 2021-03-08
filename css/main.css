@@ -12,6 +12,17 @@
   background: #ab3456;
   color: brown;
 }
+#dealer-stand.stood, #player-stand.stood {display: inline-block;};
+
+.gameContent-card {
+  box-sizing: border-box;
+  font-size: medium;
+  text-align: center;
+  padding: 12px;
+  width: 100%;
+  background: #ab3456;
+  border: 1px solid black
+}
 
 #play-buttons {
   display: grid;
@@ -54,7 +65,7 @@
 
 
 /* CARDS!!! */
-.card.diamonds.A,
+/* .card.diamonds.A,
 .card.dA,
 .card.♦A {
   background-image: url("../images/diamonds/diamonds-A.svg"); }
@@ -355,4 +366,4 @@
   .card.E.shadow {
     box-shadow: -2px 2px 3px 0 rgba(41, 41, 41, 0.75); }
 
-    
+     */
