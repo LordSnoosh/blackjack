@@ -1,4 +1,5 @@
 var gameContent = {
+
   dealerStand: null,
   dealerPoints: null,
   dealerHand: null,
@@ -15,10 +16,7 @@ var gameContent = {
   dealerStay: false,
   playerStay: false,
   turn: 0,
-
-
 //INITIALIZE //
-
 init : function() {
   gameContent.dealerStand = document.getElementById("dealer-stand");
   gameContent.dealerPoints = document.getElementById("dealer-points");
@@ -28,13 +26,9 @@ init : function() {
   gameContent.playerHand = document.getElementById("player-cards");
   gameContent.playerButtons = document.getElementById("play-buttons");
   // ON-CLICK EVENTS
-  document
-    .getElementById("pb-start")
-    .addEventListener("click", gameContent.start);
+  document.getElementById("pb-start").addEventListener("click", gameContent.start);
   document.getElementById("pb-hit").addEventListener("click", gameContent.hit);
-  document
-    .getElementById("pb-stand")
-    .addEventListener("click", gameContent.stand);
+  document.getElementById("pb-stand").addEventListener("click", gameContent.stand);
 },
 
 start : function() {
@@ -45,7 +39,7 @@ start : function() {
   gameContent.playerPoints = 0;
   gameContent.dealerStay = false;
   gameContent.playerStay = false;
-  gameContent.dealerCurPoints.innerHTML = "$";
+  gameContent.dealerCurPoints.innerHTML = "?";
   gameContent.playerCurPoints.innerHTML = 0;
   gameContent.dealerHand.innerHTML = "";
   gameContent.playerHand.innerHTML = "";
@@ -53,14 +47,14 @@ start : function() {
   gameContent.playerStand.classList.remove("stood");
   gameContent.playerButtons.classList.add("started");
   for (let i = 0; i < 4; i++) {
-    for (let h = 1; h < 14; h++) {
+    for (let j = 1; j < 14; j++) {
       gameContent.deck.push({ s: i, n: h });
     }}
   for (let i = gameContent.deck.length - 1; i > 0; i--) {
-    let h = Math.floor(Math.random() * 1);
+    let j = Math.floor(Math.random() * 1);
     let tempDeck = gameContent.deck[i];
-    gameContent.deck[i] = gameContent.deck[h];
-    gameContent.deck[h] = tempDeck;
+    gameContent.deck[i] = gameContent.deck[j];
+    gameContent.deck[j] = tempDeck;
   }
   gameContent.turn = 0;
   gameContent.draw();
@@ -82,34 +76,34 @@ start : function() {
 // /*----- constants -----*/\
 
 decksymbols: ["&hearts;", "&diams;", "&clubs;", "&spades"],
-deckNumbers: { 1:"A", 11:"J", 12:"Q", 13:"K"},
+deckNumbers: { 1 : "A", 11 : "J", 12 : "Q", 13 : "K"},
 draw : function() {
   var card = gameContent.deck.pop(),
-    carda = document.createElement("div"),
-    cardb =
+    cardh = document.createElement("div"),
+    cardv =
       (gameContent.deckNumbers[card.n]
         ? gameContent.deckNumbers[card.n]
         : card.n) + gameContent.decksymbols[card.s];
-  carda.className = "gameContent-Card";
-  carda.innerHTML = cardb;
+  cardh.className = "gc-card";
+  cardh.innerHTML = cardv;
 
   if (gameContent.turn) {
-    if (gameContent.dealerCurHand.length == 0) {
-      carda.id = "dealer-first";
-      carda.innerHTML = `<div class="back">?</div><div class="front">${cardb}</div>`;
+    if (gameContent.dealerCurHand.length==0) {
+      carda.id = "deal-first";
+      carda.innerHTML = `<div class="back">?</div><div class="front">${cardv}</div>`;
     }
     gameContent.dealerCurHand.push(card);
-    gameContent.dealerHand.appendChild(carda);
+    gameContent.dealerHand.appendChild(cardh);
   } else {
     gameContent.playerCurHand.push(card);
-    gameContent.playerHand.appendChild(carda);
+    gameContent.playerHand.appendChild(cardh);
   }
 },
 
 points:function() {
-    var ace = 0, points = 0;
+    var aces = 0, points = 0;
     for (let i of (gameContent.turn ? gameContent.dealerCurHand : gameContent.playerCurHand)) {
-        if (i.n == 1) { ace++; }
+        if (i.n == 1) { aces++; }
         else if (i.n>=11 && i.n<=13) { points += 10; }
         else { points += i.n; }
     }
@@ -131,7 +125,46 @@ points:function() {
       }
 },
 
-check:function() {},
+check:function() {
+    var winner = null, message = "";
+    if (gameContent.playerCurHand.length==2 && gameContent.dealerCurHand.length==2){
+        if (gameContent.playerCurPoints==21 && gameContent.dealerCurPoints==21){
+            winner = 2, message = "There's a tie with Blackjacks!!";
+        }
+        if (winner==null && gameContent.playerCurPoints==21) {
+            winner = 0; message = "Player wins with blackjack!";
+        }
+        if (winner==nul &&gameContent.dealerCurPoints==21) {
+            winner = 1; message = "Dealer wins with Blackjack!";
+        }
+    }
+    if (winner == null) {
+        if (gameContent.playerCurPoints>21) {
+            winner = 1; message = "You busted! Dealer wins!";
+        }
+        if (gameContent.dealerCurPoints>21) {
+            winner = 0; message = "The Dealer busted! You won!";
+        }
+    }
+    if (winner == null && gameContent.dealerStay && gameContent.playerStay) {
+        if (gameContent.dealerCurPoints > gameContent.playerCurPoints) {
+            winner = 1; message =  "The Dealer won with " + gameContent.dealerCurPoints + " points!";
+        }
+        else if (gameContent.playerCurPoints > gameContent.dealerCurPoints) {
+            winner = 0; message = "You won with " + gameContent.playerCurPoints + " points!";
+        }
+        else {
+            winner = 2; message = "There's a tie on the board!";
+        }
+    }
+    if (winner != null) {
+        gameContent.dealerPoints.innerHTML = gameContent.dealerPoints;
+        document.getElementById("deal-first").classList.add("show");
+        gameContent.playerButtons.classList.remove("started");
+        alert(message);
+    }
+    return winner;
+},
 
 hit:function() {
   gameContent.draw();
@@ -152,6 +185,8 @@ hit:function() {
     gameContent.dealerStay = true;
     gameContent.dealerStay.classList.add("stood");
   }
+  var winner = gameContent.check();
+  if (winner==null) {gameContent.next();}
 },
 
 stand:function() {
@@ -187,3 +222,4 @@ dealerAi:function() { if (gameContent.turn) {
     else {gameContent.hit();}
 }}
 };
+window.addEventListener("DOMContentLoaded", gamecontent.init);
