@@ -81,7 +81,7 @@ start : function() {
 },
 // /*----- constants -----*/\
 
-decksymbols: ["&hearts;", "&diams;", "&clubs;", "&spades"];
+decksymbols: ["&hearts;", "&diams;", "&clubs;", "&spades"],
 deckNumbers: { 1:"A", 11:"J", 12:"Q", 13:"K"},
 draw : function() {
   var card = gameContent.deck.pop(),
@@ -106,7 +106,31 @@ draw : function() {
   }
 },
 
-points:function() {},
+points:function() {
+    var ace = 0, points = 0;
+    for (let i of (gameContent.turn ? gameContent.dealerCurHand : gameContent.playerCurHand)) {
+        if (i.n == 1) { ace++; }
+        else if (i.n>=11 && i.n<=13) { points += 10; }
+        else { points += i.n; }
+    }
+    if (aces!=0) {
+        var minmax = [];
+        for (let elevens=0; elevens<=aces; elevens++) {
+          let calc = points + (elevens * 11) + (aces-elevens * 1);
+          minmax.push(calc);
+        }
+        points = minmax[0];
+        for (let i of minmax) {
+          if (i > points && i <= 21) { points = i; }
+        }
+      }
+      if (gameContent.turn) {gameContent.dealerCurPoints = points; }
+      else {
+          gameContent.playerCurPoints = points;
+          gameContent.playerPoints.innerHTML = points;
+      }
+},
+
 check:function() {},
 
 hit:function() {
@@ -158,5 +182,8 @@ next:function() {
     }
 },
 
-dealerAi:function() {}
-
+dealerAi:function() { if (gameContent.turn) {
+    if (gameContent.dealerPoints >= gameContent.safety) {gameContent.stand();}
+    else {gameContent.hit();}
+}}
+};

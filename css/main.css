@@ -1,4 +1,4 @@
-/* #dealer-wrap, #player-wrap {
+#dealer-wrap, #player-wrap {
   min-height: 120px;
 };
 #dealer-data, #player-data {
@@ -78,4 +78,4 @@
 #play-buttons.started {grid-template-columns: 50% 50%;}
 #play-buttons.started #pb-start {display: none;}
 #play-buttons.started #pb-hit, #play-buttons.started #pb-stay {display: block;}
-*/
+
