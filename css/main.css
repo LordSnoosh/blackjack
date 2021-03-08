@@ -45,15 +45,15 @@
    grid-template-columns: 100%;
    gap: 10px;
    padding: 10px;
-   background: yellow;
+   background: transparent;
  }
  #play-buttons input {
    box-sizing: border-box;
    cursor: pointer;
    border: 0;
    padding: 10px;
-   background: rgb(101, 101, 221);
-   color: rgb(145, 88, 14);
+   background: rgb(32, 107, 14);
+   color: rgb(221, 238, 222);
    width: 100%
  }
 

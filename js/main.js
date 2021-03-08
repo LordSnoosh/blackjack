@@ -1,4 +1,4 @@
-var gameContent = {
+var gc = {
 
   dealerStand: null,
   dealerPoints: null,
@@ -7,6 +7,7 @@ var gameContent = {
   playerPoints: null,
   playerHand: null,
   playerButtons: null,
+  
   deck: [],
   dealerCurHand: [],
   playerCurHand: [],
@@ -17,99 +18,97 @@ var gameContent = {
   playerStay: false,
   turn: 0,
 //INITIALIZE //
+
 init : function() {
-  gameContent.dealerStand = document.getElementById("dealer-stand");
-  gameContent.dealerPoints = document.getElementById("dealer-points");
-  gameContent.dealerHand = document.getElementById("dealer-cards");
-  gameContent.playerStand = document.getElementById("player-stand");
-  gameContent.playerPoints = document.getElementById("player-points");
-  gameContent.playerHand = document.getElementById("player-cards");
-  gameContent.playerButtons = document.getElementById("play-buttons");
+  gc.dealerStand = document.getElementById("dealer-stand");
+  gc.dealerPoints = document.getElementById("dealer-points");
+  gc.dealerHand = document.getElementById("dealer-cards");
+  gc.playerStand = document.getElementById("player-stand");
+  gc.playerPoints = document.getElementById("player-points");
+  gc.playerHand = document.getElementById("player-cards");
+  gc.playerButtons = document.getElementById("play-buttons");
   // ON-CLICK EVENTS
-  document.getElementById("pb-start").addEventListener("click", gameContent.start);
-  document.getElementById("pb-hit").addEventListener("click", gameContent.hit);
-  document.getElementById("pb-stand").addEventListener("click", gameContent.stand);
+  document.getElementById("pb-start").addEventListener("click", gc.start);
+  document.getElementById("pb-hit").addEventListener("click", gc.hit);
+  document.getElementById("pb-stand").addEventListener("click", gc.stand);
 },
 
 start : function() {
-  gameContent.deck = [];
-  gameContent.dealerCurHand = [];
-  gameContent.playerCurHand = [];
-  gameContent.dealerPoints = 0;
-  gameContent.playerPoints = 0;
-  gameContent.dealerStay = false;
-  gameContent.playerStay = false;
-  gameContent.dealerCurPoints.innerHTML = "?";
-  gameContent.playerCurPoints.innerHTML = 0;
-  gameContent.dealerHand.innerHTML = "";
-  gameContent.playerHand.innerHTML = "";
-  gameContent.dealerStand.classList.remove("stood");
-  gameContent.playerStand.classList.remove("stood");
-  gameContent.playerButtons.classList.add("started");
+  gc.deck = [];
+  gc.dealerCurHand = [];
+  gc.playerCurHand = [];
+  gc.dealerPoints = 0;
+  gc.playerPoints = 0;
+  gc.dealerStay = false;
+  gc.playerStay = false;
+  gc.dealerCurPoints.innerHTML = 0;
+  gc.playerCurPoints.innerHTML = 0;
+  gc.dealerHand.innerHTML = "";
+  gc.playerHand.innerHTML = "";
+  gc.dealerStand.classList.remove("stood");
+  gc.playerStand.classList.remove("stood");
+  gc.playerButtons.classList.add("started");
   for (let i = 0; i < 4; i++) {
     for (let j = 1; j < 14; j++) {
-      gameContent.deck.push({ s: i, n: h });
+      gc.deck.push({ s: i, n: j });
     }}
-  for (let i = gameContent.deck.length - 1; i > 0; i--) {
+  for (let i = gc.deck.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * 1);
-    let tempDeck = gameContent.deck[i];
-    gameContent.deck[i] = gameContent.deck[j];
-    gameContent.deck[j] = tempDeck;
+    let tempDeck = gc.deck[i];
+    gc.deck[i] = gc.deck[j];
+    gc.deck[j] = tempDeck;
   }
-  gameContent.turn = 0;
-  gameContent.draw();
-  gameContent.turn = 1;
-  gameContent.draw();
-  gameContent.turn = 0;
-  gameContent.draw();
-  gameContent.turn = 1;
-  gameContent.draw();
-  gameContent.turn = 0;
-  gameContent.points();
-  gameContent.turn = 1;
-  gameContent.points();
-  var winner = gameContent.check();
+  gc.turn = 0;
+  gc.draw();
+  gc.turn = 1;
+  gc.draw();
+  gc.turn = 0;
+  gc.draw();
+  gc.turn = 1;
+  gc.draw();
+  gc.turn = 0;
+  gc.points();
+  gc.turn = 1;
+  gc.points();
+  var winner = gc.check();
   if (winner == null) {
-    gameContent.turn = 0;
+    gc.turn = 0;
   }
 },
 // /*----- constants -----*/\
 
-decksymbols: ["&hearts;", "&diams;", "&clubs;", "&spades"],
+decksymbols: ["&hearts;", "&diams;", "&clubs;", "&spades;"],
 deckNumbers: { 1 : "A", 11 : "J", 12 : "Q", 13 : "K"},
 draw : function() {
-  var card = gameContent.deck.pop(),
+  var card = gc.deck.pop(),
     cardh = document.createElement("div"),
-    cardv =
-      (gameContent.deckNumbers[card.n]
-        ? gameContent.deckNumbers[card.n]
-        : card.n) + gameContent.decksymbols[card.s];
+    cardv = (gc.deckNumbers[card.n] ? gc.deckNumbers[card.n] : card.n) + gc.decksymbols[card.s];
   cardh.className = "gc-card";
-  cardh.innerHTML = cardv;
+  cardh.innerHTML = cardv ;
 
-  if (gameContent.turn) {
-    if (gameContent.dealerCurHand.length==0) {
-      carda.id = "deal-first";
-      carda.innerHTML = `<div class="back">?</div><div class="front">${cardv}</div>`;
+  if (gc.turn) {
+    if (gc.dealerCurHand.length==0) {
+      cardh.id = "deal-first";
+      cardh.innerHTML = `<div class="back"></div><div class="front">${cardv}</div>`;
     }
-    gameContent.dealerCurHand.push(card);
-    gameContent.dealerHand.appendChild(cardh);
+    gc.dealerCurHand.push(card);
+    gc.dealerHand.appendChild(cardh);
   } else {
-    gameContent.playerCurHand.push(card);
-    gameContent.playerHand.appendChild(cardh);
+    gc.playerCurHand.push(card);
+    gc.playerHand.appendChild(cardh);
   }
 },
 
 points:function() {
     var aces = 0, points = 0;
-    for (let i of (gameContent.turn ? gameContent.dealerCurHand : gameContent.playerCurHand)) {
+    for (let i of (gc.turn ? gc.dealerCurHand : gc.playerCurHand)) {
         if (i.n == 1) { aces++; }
-        else if (i.n>=11 && i.n<=13) { points += 10; }
+        else if (i.n >= 11 && i.n <= 13) { points += 10; }
         else { points += i.n; }
     }
     if (aces!=0) {
         var minmax = [];
-        for (let elevens=0; elevens<=aces; elevens++) {
+        for (let elevens =0 ; elevens <= aces; elevens++) {
           let calc = points + (elevens * 11) + (aces-elevens * 1);
           minmax.push(calc);
         }
@@ -118,108 +117,108 @@ points:function() {
           if (i > points && i <= 21) { points = i; }
         }
       }
-      if (gameContent.turn) {gameContent.dealerCurPoints = points; }
+      if (gc.turn) {gc.dealerCurPoints = points; }
       else {
-          gameContent.playerCurPoints = points;
-          gameContent.playerPoints.innerHTML = points;
+          gc.playerCurPoints = points;
+          gc.playerPoints.innerHTML = points;
       }
 },
 
 check:function() {
     var winner = null, message = "";
-    if (gameContent.playerCurHand.length==2 && gameContent.dealerCurHand.length==2){
-        if (gameContent.playerCurPoints==21 && gameContent.dealerCurPoints==21){
+    if (gc.playerCurHand.length==2 && gc.dealerCurHand.length==2){
+        if (gc.playerCurPoints==21 && gc.dealerCurPoints==21){
             winner = 2, message = "There's a tie with Blackjacks!!";
         }
-        if (winner==null && gameContent.playerCurPoints==21) {
+        if (winner==null && gc.playerCurPoints==21) {
             winner = 0; message = "Player wins with blackjack!";
         }
-        if (winner==nul &&gameContent.dealerCurPoints==21) {
+        if (winner==null && gc.dealerCurPoints==21) {
             winner = 1; message = "Dealer wins with Blackjack!";
         }
     }
     if (winner == null) {
-        if (gameContent.playerCurPoints>21) {
+        if (gc.playerCurPoints > 21) {
             winner = 1; message = "You busted! Dealer wins!";
         }
-        if (gameContent.dealerCurPoints>21) {
+        if (gc.dealerCurPoints > 21) {
             winner = 0; message = "The Dealer busted! You won!";
         }
     }
-    if (winner == null && gameContent.dealerStay && gameContent.playerStay) {
-        if (gameContent.dealerCurPoints > gameContent.playerCurPoints) {
-            winner = 1; message =  "The Dealer won with " + gameContent.dealerCurPoints + " points!";
+    if (winner == null && gc.dealerStay && gc.playerStay) {
+        if (gc.dealerCurPoints > gc.playerCurPoints) {
+            winner = 1; message =  "The Dealer won with " + gc.dealerCurPoints + " points!";
         }
-        else if (gameContent.playerCurPoints > gameContent.dealerCurPoints) {
-            winner = 0; message = "You won with " + gameContent.playerCurPoints + " points!";
+        else if (gc.playerCurPoints > gc.dealerCurPoints) {
+            winner = 0; message = "You won with " + gc.playerCurPoints + " points!";
         }
         else {
             winner = 2; message = "There's a tie on the board!";
         }
     }
     if (winner != null) {
-        gameContent.dealerPoints.innerHTML = gameContent.dealerPoints;
+        gc.dealerPoints.innerHTML = gc.dealerPoints;
         document.getElementById("deal-first").classList.add("show");
-        gameContent.playerButtons.classList.remove("started");
+        gc.playerButtons.classList.remove("started");
         alert(message);
     }
     return winner;
 },
 
 hit:function() {
-  gameContent.draw();
-  gameContent.points();
+  gc.draw();
+  gc.points();
   if (
-    gameContent.turn == 0 &&
-    gameContent.playerCurPoints == 21 &&
-    !gameContent.playerStay
+    gc.turn == 0 &&
+    gc.playerCurPoints == 21 &&
+    !gc.playerStay
   ) {
-    gameContent.playerStay = true;
-    gameContent.playerStay.classList.add("stood");
+    gc.playerStay = true;
+    gc.playerStay.classList.add("stood");
   }
   if (
-    gameContent.turn == 0 &&
-    gameContent.dealerCurPoints == 21 &&
-    !gameContent.dealerStay
+    gc.turn == 0 &&
+    gc.dealerCurPoints == 21 &&
+    !gc.dealerStay
   ) {
-    gameContent.dealerStay = true;
-    gameContent.dealerStay.classList.add("stood");
+    gc.dealerStay = true;
+    gc.dealerStay.classList.add("stood");
   }
-  var winner = gameContent.check();
-  if (winner==null) {gameContent.next();}
+  var winner = gc.check();
+  if (winner==null) {gc.next();}
 },
 
 stand:function() {
-  if (gameContent.turn) {
-    gameContent.dealerStay = true;
-    gameContent.dealerStand.classList.add("stood");
+  if (gc.turn) {
+    gc.dealerStay = true;
+    gc.dealerStand.classList.add("stood");
   } else {
-    gameContent.playerstay = true;
-    gameContent.playerStand.classList.add("stood");
+    gc.playerstay = true;
+    gc.playerStand.classList.add("stood");
   }
   var winner =
-    gameContent.playerStay && gameContent.dealerStay
-      ? gameContent.check()
+    gc.playerStay && gc.dealerStay
+      ? gc.check()
       : null;
   if (winner == null) {
-    gameContent.next();
+    gc.next();
   }
 },
 
 next:function() {
-    gameContent.turn = gameContent.turn==0 ? 1 : 0;
-    if (gameContent.turn==1) {
-        if (gameContent.dealerStay) {gameContent.turn = 0; }
-        else {gameContent.dealerAi();}
+    gc.turn = gc.turn==0 ? 1 : 0;
+    if (gc.turn==1) {
+        if (gc.dealerStay) {gc.turn = 0; }
+        else {gc.dealerAi();}
     }
     else {
-        if (gameContent.playerstay) {gameContent.turn = 1; gameContent.dealerAi() ;}
+        if (gc.playerstay) {gc.turn = 1; gc.dealerAi() ;}
     }
 },
 
-dealerAi:function() { if (gameContent.turn) {
-    if (gameContent.dealerPoints >= gameContent.safety) {gameContent.stand();}
-    else {gameContent.hit();}
+dealerAi:function() { if (gc.turn) {
+    if (gc.dealerPoints >= gc.safety) {gc.stand();}
+    else {gc.hit();}
 }}
 };
-window.addEventListener("DOMContentLoaded", gamecontent.init);
+window.addEventListener("DOMContentLoaded", gc.init);
