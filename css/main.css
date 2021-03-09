@@ -1,5 +1,9 @@
+body {
+  background-color: bisque;
+}
+
 #dealer-wrap, #player-wrap {
-  min-height: 120px;
+  min-height: 10px;
 }
 #dealer-data, #player-data {
   padding: 10px;
@@ -7,6 +11,7 @@
 }
 #dealer-stand, #player-stand {
   display: none;
+  max-height: 120px;
   padding: 10px;
   background: #c42c57;
   color: rgb(209, 157, 157);
@@ -25,9 +30,10 @@
   font-size: 3em;
   text-align: center;
   padding: 12px;
-  width: 100%;
+  width: 50%;
   background: #ab3456;
   border: 2px solid rgb(221, 172, 172);
+  position: center;
 }
 
 

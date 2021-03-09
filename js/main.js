@@ -259,14 +259,21 @@ var gc = {
   };
   window.addEventListener("DOMContentLoaded", gc.init);
   
-  const bgPlayer = document.getElementById('bg-player');
+  const player = new Audio();
+const bgPlayer = document.getElementById('bg-player');
+const bgCheckbox = document.querySelector('input[type="checkbox"]');
+
 bgPlayer.volume = .5;
+
+document.getElementById('play-btn').addEventListener('click', handlePlaySound);
 bgCheckbox.addEventListener('change', handleBgChanged);
-function handleBgChanged() {
-    bgCheckbox.checked ? bgPlayer.play() : bgPlayer.pause();
-  };
-// Functions
+
 function handlePlaySound() {
     // Use the CSS :checked pseudoclass to select the selected radio button
     const selSoundInp = document.querySelector('input[name="sound"]:checked');
     playSound(selSoundInp.value);
+  }
+
+  function handleBgChanged() {
+    bgCheckbox.checked ? bgPlayer.play() : bgPlayer.pause();
+  }
