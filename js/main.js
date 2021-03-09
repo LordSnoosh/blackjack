@@ -265,12 +265,6 @@ bgPlayer.volume = 0.3;
 document.getElementById("play-btn").addEventListener("click", handlePlaySound);
 bgCheckbox.addEventListener("change", handleBgChanged);
 
-function handlePlaySound() {
-  // Use the CSS :checked pseudoclass to select the selected radio button
-  const selSoundInp = document.querySelector('input[name="sound"]:checked');
-  playSound(selSoundInp.value);
-}
-
 function handleBgChanged() {
   bgCheckbox.checked ? bgPlayer.play() : bgPlayer.pause();
 }
