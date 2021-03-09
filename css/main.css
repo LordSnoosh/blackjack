@@ -1,16 +1,14 @@
-#game-container {
-  display: grid;
-  
-}
-
+/* * {
+  box-sizing: border-box;
+} */
 body {
-  display: block;
-  grid-template-rows: auto;
-  background-color: bisque;
-  max-width: 400px;
-  max-height: 400px;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vmin;
+  margin: 0;
+  text-align: center;
 }
-
 #dealer-wrap, #player-wrap {
   min-height: 10px;
 }
@@ -28,7 +26,7 @@ body {
 
 #dealer-cards, #player-cards {
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(3, auto);
   gap: 12px;
   padding: 10px;
   align-items: center;
