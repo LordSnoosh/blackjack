@@ -7,6 +7,7 @@ function handleBgChanged() {
   bgCheckbox.checked ? bgPlayer.play() : bgPlayer.pause();
 }
 
+//this feels like a terrible idea...//
 var gc = {
   hdstand: null,
   hdpoints: null,
