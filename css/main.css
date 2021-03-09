@@ -40,14 +40,14 @@
 #player-wrap { background: pink; }
 #player-data { background: grey; }
 
- #play-buttons {
+ #player-buttons {
    display: grid;
    grid-template-columns: 100%;
    gap: 10px;
    padding: 10px;
    background: transparent;
  }
- #play-buttons input {
+ #player-buttons input {
    box-sizing: border-box;
    cursor: pointer;
    border: 0;
@@ -58,7 +58,7 @@
  }
 
 #pb-hit, #pb-stand { display: none; }
-#play-buttons.started { grid-template-columns: 50% 50%; }
-#play-buttons.started #pb-start { display: none; }
-#play-buttons.started #pb-hit, #play-buttons.started #pb-stay { display: block; }
+#player-buttons.started { grid-template-columns: 50% 50%; }
+#player-buttons.started #pb-start { display: none; }
+#player-buttons.started #pb-hit, #player-buttons.started #pb-stay { display: block; }
 
