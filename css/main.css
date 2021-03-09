@@ -60,5 +60,5 @@
 #pb-hit, #pb-stand { display: none; }
 #player-buttons.started { grid-template-columns: 50% 50%; }
 #player-buttons.started #pb-start { display: none; }
-#player-buttons.started #pb-hit, #player-buttons.started #pb-stay { display: block; }
+#player-buttons.started #pb-hit, #player-buttons.started #pb-stand { display: block; }
 
