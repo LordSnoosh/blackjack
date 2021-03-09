@@ -1,10 +1,13 @@
-/* * {
+
+
+* {
   box-sizing: border-box;
-} */
+}
 body {
   display: grid;
   align-items: center;
   justify-content: center;
+  background-color: rgb(145, 24, 141);
   min-height: 100vmin;
   margin: 0;
   text-align: center;
@@ -20,19 +23,21 @@ body {
   display: none;
   max-height: 120px;
   padding: 10px;
-  background: #affaf6;
+  background: #bc06c2;
 }
 #dealer-stand.stood, #player-stand.stood { display: inline-block; }
 
 #dealer-cards, #player-cards {
   display: grid;
-  grid-template-columns: repeat(3, auto);
-  gap: 12px;
-  padding: 10px;
   align-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(6, auto);
+  gap: 6px;
+  padding: 10px;
 }
 
 .gc-card {
+
   box-sizing: border-box;
   font-size: 3em;
   text-align: center;
@@ -56,14 +61,15 @@ body {
    display: grid;
    grid-template-columns: 100%;
    gap: 1px;
-   padding: 10px 10px 10px 10px;
+   width: 100%;
+   padding: 10px;
    background: pink;
  }
  #player-buttons input {
    box-sizing: border-box;
    cursor: pointer;
    border: 0;
-   padding: 10px 10px 10px 10px;
+   padding: 10px;
    background: #a11c96;
    color: black;
    width: 100%
