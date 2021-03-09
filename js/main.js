@@ -260,7 +260,7 @@ const player = new Audio();
 const bgPlayer = document.getElementById("bg-player");
 const bgCheckbox = document.querySelector('input[type="checkbox"]');
 
-bgPlayer.volume = 0.2;
+bgPlayer.volume = 0.3;
 
 document.getElementById("play-btn").addEventListener("click", handlePlaySound);
 bgCheckbox.addEventListener("change", handleBgChanged);

@@ -7,7 +7,7 @@ body {
   display: grid;
   align-items: center;
   justify-content: center;
-  background-color: rgb(145, 24, 141);
+  background-color: rgb(8, 100, 12);
   min-height: 100vmin;
   margin: 0;
   text-align: center;
@@ -23,7 +23,7 @@ body {
   display: none;
   max-height: 120px;
   padding: 10px;
-  background: #bc06c2;
+  background: #078807;
 }
 #dealer-stand.stood, #player-stand.stood { display: inline-block; }
 
@@ -43,19 +43,19 @@ body {
   text-align: center;
   padding: 12px;
   width: 100%;
-  background: #a11c96;
-  border: 2px solid rgb(221, 172, 172);
+  background: #3bac53;
+  border: 2px solid rgb(172, 221, 176);
 }
 
 
-#dealer-wrap { background: pink; }
-#dealer-data { background: grey; }
+#dealer-wrap { background: rgb(192, 255, 192); }
+#dealer-data { background: rgb(89, 102, 92); }
 #deal-first .front { display: none; } 
 #deal-first.show .back { display: none; }
 #deal-first.show .front {  display: block; }
 
-#player-wrap { background: pink; }
-#player-data { background: grey; }
+#player-wrap { background: rgb(192, 255, 192); }
+#player-data { background: rgb(94, 116, 99); }
 
  #player-buttons {
    display: grid;
@@ -63,14 +63,14 @@ body {
    gap: 1px;
    width: 100%;
    padding: 10px;
-   background: pink;
+   background: rgb(192, 255, 206);
  }
  #player-buttons input {
    box-sizing: border-box;
    cursor: pointer;
    border: 0;
    padding: 10px;
-   background: #a11c96;
+   background: #1ca13d;
    color: black;
    width: 100%
  }
