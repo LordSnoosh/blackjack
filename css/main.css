@@ -7,22 +7,22 @@ body {
 }
 #dealer-data, #player-data {
   padding: 10px;
-  color: rgb(214, 153, 245);
+  color: rgb(11, 0, 17);
 }
 #dealer-stand, #player-stand {
   display: none;
   max-height: 120px;
   padding: 10px;
-  background: #c42c57;
-  color: rgb(209, 157, 157);
+  background: #affaf6;
 }
 #dealer-stand.stood, #player-stand.stood { display: inline-block; }
 
 #dealer-cards, #player-cards {
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(5, auto);
   gap: 12px;
   padding: 10px;
+  align-items: center;
 }
 
 .gc-card {
@@ -30,10 +30,9 @@ body {
   font-size: 3em;
   text-align: center;
   padding: 12px;
-  width: 50%;
+  width: 100%;
   background: #ab3456;
   border: 2px solid rgb(221, 172, 172);
-  position: center;
 }
 
 
