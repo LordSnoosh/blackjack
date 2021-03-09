@@ -1,3 +1,6 @@
+
+
+
 var gc = {
     hdstand: null,
     hdpoints: null,
@@ -256,3 +259,14 @@ var gc = {
   };
   window.addEventListener("DOMContentLoaded", gc.init);
   
+  const bgPlayer = document.getElementById('bg-player');
+bgPlayer.volume = .5;
+bgCheckbox.addEventListener('change', handleBgChanged);
+function handleBgChanged() {
+    bgCheckbox.checked ? bgPlayer.play() : bgPlayer.pause();
+  };
+// Functions
+function handlePlaySound() {
+    // Use the CSS :checked pseudoclass to select the selected radio button
+    const selSoundInp = document.querySelector('input[name="sound"]:checked');
+    playSound(selSoundInp.value);
