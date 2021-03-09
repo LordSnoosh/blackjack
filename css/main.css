@@ -20,7 +20,7 @@
   padding: 10px;
 }
 
-.gc-card {
+.bj-card {
   box-sizing: border-box;
   font-size: 3em;
   text-align: center;
@@ -33,9 +33,9 @@
 
 #dealer-wrap { background: pink; }
 #dealer-data { background: grey; }
-#dealer-first .front { display: none; } 
-#dealer-first.show .back { display: none; }
-#dealer-first.show .front {  display: block; }
+#deal-first .front { display: none; } 
+#deal-first.show .back { display: none; }
+#deal-first.show .front {  display: block; }
 
 #player-wrap { background: pink; }
 #player-data { background: grey; }
@@ -45,7 +45,7 @@
    grid-template-columns: 100%;
    gap: 10px;
    padding: 10px;
-   background: transparent;
+   background: white;
  }
  #player-buttons input {
    box-sizing: border-box;
