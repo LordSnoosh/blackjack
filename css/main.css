@@ -1,5 +1,4 @@
 
-
 * {
   box-sizing: border-box;
 }
@@ -17,7 +16,7 @@ body {
 }
 #dealer-data, #player-data {
   padding: 10px;
-  color: rgb(11, 0, 17);
+  color: rgb(217, 243, 218);
 }
 #dealer-stand, #player-stand {
   display: none;
@@ -26,7 +25,6 @@ body {
   background: #078807;
 }
 #dealer-stand.stood, #player-stand.stood { display: inline-block; }
-
 #dealer-cards, #player-cards {
   display: grid;
   align-items: center;
@@ -35,9 +33,7 @@ body {
   gap: 6px;
   padding: 10px;
 }
-
 .gc-card {
-
   box-sizing: border-box;
   font-size: 3em;
   text-align: center;
@@ -46,18 +42,14 @@ body {
   background: #3bac53;
   border: 2px solid rgb(172, 221, 176);
 }
-
-
 #dealer-wrap { background: rgb(192, 255, 192); }
 #dealer-data { background: rgb(89, 102, 92); }
 #deal-first .front { display: none; } 
 #deal-first.show .back { display: none; }
 #deal-first.show .front {  display: block; }
-
 #player-wrap { background: rgb(192, 255, 192); }
 #player-data { background: rgb(94, 116, 99); }
-
- #player-buttons {
+#player-buttons {
    display: grid;
    grid-template-columns: 100%;
    gap: 1px;
@@ -71,10 +63,9 @@ body {
    border: 0;
    padding: 10px;
    background: #1ca13d;
-   color: black;
+   color: rgb(217, 243, 218);
    width: 100%
  }
-
 #pb-hit, #pb-stand { display: none; }
 #player-buttons.started { grid-template-columns: 50% 50%; }
 #player-buttons.started #pb-start { display: none; }

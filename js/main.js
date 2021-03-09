@@ -265,5 +265,4 @@ var gc = {
   },
 };
 window.addEventListener("DOMContentLoaded", gc.init);
-
-
+//I've made a terrible mistake...//
