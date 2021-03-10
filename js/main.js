@@ -9,53 +9,53 @@ function handleBgChanged() {
 
 //this feels like a terrible idea...//
 var gc = {
-  hdstand: null,
-  hdpoints: null,
-  hdhand: null,
-  hpstand: null,
-  hppoints: null,
-  hphand: null,
-  hpcon: null,
+  dealerstand: null,
+  dealerpoints: null,
+  dealerhand: null,
+  playerstand: null,
+  playerpoints: null,
+  playerhand: null,
+  playerbtns: null,
 
   deck: [],
-  dealer: [],
-  player: [],
-  dpoints: 0,
-  ppoints: 0,
-  safety: 17,
-  dstand: false,
-  pstand: false,
+  dealercards: [],
+  playercards: [],
+  dealerpoint: 0,
+  playerpoint: 0,
+  safety: 18,
+  dealerstanding: false,
+  playerstanding: false,
   turn: 0,
 
   init: function () {
-    gc.hdstand = document.getElementById("dealer-stand");
-    gc.hdpoints = document.getElementById("dealer-points");
-    gc.hdhand = document.getElementById("dealer-cards");
-    gc.hpstand = document.getElementById("player-stand");
-    gc.hppoints = document.getElementById("player-points");
-    gc.hphand = document.getElementById("player-cards");
-    gc.hpcon = document.getElementById("player-buttons");
+    gc.dealerstand = document.getElementById("dealer-stand");
+    gc.dealerpoints = document.getElementById("dealer-points");
+    gc.dealerhand = document.getElementById("dealer-cards");
+    gc.playerstand = document.getElementById("player-stand");
+    gc.playerpoints = document.getElementById("player-points");
+    gc.playerhand = document.getElementById("player-cards");
+    gc.playerbtns = document.getElementById("player-buttons");
 
     document.getElementById("pb-start").addEventListener("click", gc.start);
-    document.getElementById("pb-hit").addEventListener("click", gc.hit);
-    document.getElementById("pb-stand").addEventListener("click", gc.stand);
+    document.getElementById("pb-hit").addEventListener("click", gc.hitting);
+    document.getElementById("pb-stand").addEventListener("click", gc.standing);
   },
 
   start: function () {
     gc.deck = [];
-    gc.dealer = [];
-    gc.player = [];
-    gc.dpoints = 0;
-    gc.ppoints = 0;
-    gc.dstand = false;
-    gc.pstand = false;
-    gc.hdpoints.innerHTML = "?";
-    gc.hppoints.innerHTML = 0;
-    gc.hdhand.innerHTML = "";
-    gc.hphand.innerHTML = "";
-    gc.hdstand.classList.remove("stood");
-    gc.hpstand.classList.remove("stood");
-    gc.hpcon.classList.add("started");
+    gc.dealercards = [];
+    gc.playercards = [];
+    gc.dealerpoint = 0;
+    gc.playerpoint = 0;
+    gc.dealerstanding = false;
+    gc.playerstanding = false;
+    gc.dealerpoints.innerHTML = "?";
+    gc.playerpoints.innerHTML = 0;
+    gc.dealerhand.innerHTML = "";
+    gc.playerhand.innerHTML = "";
+    gc.dealerstand.classList.remove("stood");
+    gc.playerstand.classList.remove("stood");
+    gc.playerbtns.classList.add("started");
 
     for (let i = 0; i < 4; i++) {
       for (let j = 1; j < 14; j++) {
@@ -83,7 +83,7 @@ var gc = {
     gc.points();
     gc.turn = 1;
     gc.points();
-    var winner = gc.check();
+    var winner = gc.checkWinner();
     if (winner == null) {
       gc.turn = 0;
     }
@@ -91,6 +91,7 @@ var gc = {
 
   dsymbols: ["&hearts;", "&diams;", "&clubs;", "&spades;"],
   dnum: { 1: "A", 11: "J", 12: "Q", 13: "K" },
+  
   draw: function () {
     var card = gc.deck.pop(),
       cardh = document.createElement("div"),
@@ -99,22 +100,22 @@ var gc = {
     cardh.className = "gc-card";
     cardh.innerHTML = cardv;
     if (gc.turn) {
-      if (gc.dealer.length == 0) {
+      if (gc.dealercards.length == 0) {
         cardh.id = "deal-first";
         cardh.innerHTML = `<div class="back">?</div><div class="front">${cardv}</div>`;
       }
-      gc.dealer.push(card);
-      gc.hdhand.appendChild(cardh);
+      gc.dealercards.push(card);
+      gc.dealerhand.appendChild(cardh);
     } else {
-      gc.player.push(card);
-      gc.hphand.appendChild(cardh);
+      gc.playercards.push(card);
+      gc.playerhand.appendChild(cardh);
     }
   },
 
   points: function () {
     var aces = 0,
       points = 0;
-    for (let i of gc.turn ? gc.dealer : gc.player) {
+    for (let i of gc.turn ? gc.dealercards : gc.playercards) {
       if (i.n == 1) {
         aces++;
       } else if (i.n >= 11 && i.n <= 13) {
@@ -139,53 +140,53 @@ var gc = {
     }
 
     if (gc.turn) {
-      gc.dpoints = points;
+      gc.dealerpoint = points;
     } else {
-      gc.ppoints = points;
-      gc.hppoints.innerHTML = points;
+      gc.playerpoint = points;
+      gc.playerpoints.innerHTML = points;
     }
   },
 
-  check: function () {
+  checkWinner: function () {
     var winner = null,
       message = "";
 
-    if (gc.player.length == 2 && gc.dealer.length == 2) {
-      if (gc.ppoints == 21 && gc.dpoints == 21) {
+    if (gc.playercards.length == 2 && gc.dealercards.length == 2) {
+      if (gc.playerpoint == 21 && gc.dealerpoint == 21) {
         winner = 2;
         message = "It's a tie with Blackjacks";
       }
 
-      if (winner == null && gc.ppoints == 21) {
+      if (winner == null && gc.playerpoint == 21) {
         winner = 0;
         message = "Player wins with a Blackjack!";
       }
 
-      if (winner == null && gc.dpoints == 21) {
+      if (winner == null && gc.dealerpoint == 21) {
         winner = 1;
         message = "Dealer wins with a Blackjack!";
       }
     }
 
     if (winner == null) {
-      if (gc.ppoints > 21) {
+      if (gc.playerpoint > 21) {
         winner = 1;
         message = "Player has gone bust - Dealer wins!";
       }
 
-      if (gc.dpoints > 21) {
+      if (gc.dealerpoint > 21) {
         winner = 0;
         message = "Dealer has gone bust - Player wins!";
       }
     }
 
-    if (winner == null && gc.dstand && gc.pstand) {
-      if (gc.dpoints > gc.ppoints) {
+    if (winner == null && gc.dealerstanding && gc.playerstanding) {
+      if (gc.dealerpoint > gc.playerpoint) {
         winner = 1;
-        message = "Dealer wins with " + gc.dpoints + " points!";
-      } else if (gc.dpoints < gc.ppoints) {
+        message = "Dealer wins with " + gc.dealerpoint + " points!";
+      } else if (gc.dealerpoint < gc.playerpoint) {
         winner = 0;
-        message = "Player wins with " + gc.ppoints + " points!";
+        message = "Player wins with " + gc.playerpoint + " points!";
       } else {
         winner = 2;
         message = "It's a tie.";
@@ -193,61 +194,61 @@ var gc = {
     }
 
     if (winner != null) {
-      gc.hdpoints.innerHTML = gc.dpoints;
+      gc.dealerpoints.innerHTML = gc.dealerpoint;
       document.getElementById("deal-first").classList.add("show");
 
-      gc.hpcon.classList.remove("started");
+      gc.playerbtns.classList.remove("started");
 
       alert(message);
     }
     return winner;
   },
 
-  hit: function () {
+  hitting: function () {
     gc.draw();
     gc.points();
 
-    if (gc.turn == 0 && gc.ppoints == 21 && !gc.pstand) {
-      gc.pstand = true;
-      gc.hpstand.classList.add("stood");
+    if (gc.turn == 0 && gc.playerpoint == 21 && !gc.playerstanding) {
+      gc.playerstanding = true;
+      gc.playerstand.classList.add("stood");
     }
-    if (gc.turn == 1 && gc.dpoints == 21 && !gc.dstand) {
-      gc.dstand = true;
-      gc.hdstand.classList.add("stood");
+    if (gc.turn == 1 && gc.dealerpoint == 21 && !gc.dealerstanding) {
+      gc.dealerstanding = true;
+      gc.dealerstand.classList.add("stood");
     }
 
-    var winner = gc.check();
+    var winner = gc.checkWinner();
     if (winner == null) {
-      gc.next();
+      gc.nextTurn();
     }
   },
 
-  stand: function () {
+  standing: function () {
     if (gc.turn) {
-      gc.dstand = true;
-      gc.hdstand.classList.add("stood");
+      gc.dealerstanding = true;
+      gc.dealerstand.classList.add("stood");
     } else {
-      gc.pstand = true;
-      gc.hpstand.classList.add("stood");
+      gc.playerstanding = true;
+      gc.playerstand.classList.add("stood");
     }
 
-    var winner = gc.pstand && gc.dstand ? gc.check() : null;
+    var winner = gc.playerstanding && gc.dealerstanding ? gc.checkWinner() : null;
     if (winner == null) {
-      gc.next();
+      gc.nextTurn();
     }
   },
 
-  next: function () {
+  nextTurn: function () {
     gc.turn = gc.turn == 0 ? 1 : 0;
 
     if (gc.turn == 1) {
-      if (gc.dstand) {
+      if (gc.dealerstanding) {
         gc.turn = 0;
       } else {
         gc.ai();
       }
     } else {
-      if (gc.pstand) {
+      if (gc.playerstanding) {
         gc.turn = 1;
         gc.ai();
       }
@@ -256,10 +257,10 @@ var gc = {
 
   ai: function () {
     if (gc.turn) {
-      if (gc.dpoints >= gc.safety) {
-        gc.stand();
+      if (gc.dealerpoint >= gc.safety) {
+        gc.standing();
       } else {
-        gc.hit();
+        gc.hitting();
       }
     }
   },
