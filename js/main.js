@@ -1,7 +1,7 @@
 const player = new Audio();
 const bgPlayer = document.getElementById("bg-player");
 const bgCheckbox = document.querySelector('input[type="checkbox"]');
-bgPlayer.volume = 0.3;
+bgPlayer.volume = 0.2;
 bgCheckbox.addEventListener("change", handleBgChanged);
 function handleBgChanged() {
   bgCheckbox.checked ? bgPlayer.play() : bgPlayer.pause();
@@ -159,24 +159,24 @@ var gc = {
 
       if (winner == null && gc.playerpoint == 21) {
         winner = 0;
-        message = "Player wins with a Blackjack!";
+        message = "Player wins with Blackjack!";
       }
 
       if (winner == null && gc.dealerpoint == 21) {
         winner = 1;
-        message = "Dealer wins with a Blackjack!";
+        message = "Dealer wins with Blackjack!";
       }
     }
 
     if (winner == null) {
       if (gc.playerpoint > 21) {
         winner = 1;
-        message = "Player has gone bust - Dealer wins!";
+        message = "Player has busted! Dealer wins!";
       }
 
       if (gc.dealerpoint > 21) {
         winner = 0;
-        message = "Dealer has gone bust - Player wins!";
+        message = "Dealer has busted! - Player wins!";
       }
     }
 
@@ -189,7 +189,7 @@ var gc = {
         message = "Player wins with " + gc.playerpoint + " points!";
       } else {
         winner = 2;
-        message = "It's a tie.";
+        message = "It's a tie!";
       }
     }
 
@@ -232,7 +232,8 @@ var gc = {
       gc.playerstand.classList.add("stood");
     }
 
-    var winner = gc.playerstanding && gc.dealerstanding ? gc.checkWinner() : null;
+    var winner =
+      gc.playerstanding && gc.dealerstanding ? gc.checkWinner() : null;
     if (winner == null) {
       gc.nextTurn();
     }

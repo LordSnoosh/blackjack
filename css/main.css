@@ -6,6 +6,7 @@ body {
   display: grid;
   align-items: center;
   justify-content: center;
+  border-style: groove;
   background-color: rgb(8, 100, 12);
   min-height: 100vmin;
   margin: 0;
@@ -20,6 +21,7 @@ body {
 }
 #dealer-stand, #player-stand {
   display: none;
+  border-style: dashed;
   max-height: 120px;
   padding: 10px;
   background: #078807;
@@ -27,6 +29,7 @@ body {
 #dealer-stand.stood, #player-stand.stood { display: inline-block; }
 #dealer-cards, #player-cards {
   display: grid;
+  border-style: dotted;
   align-items: center;
   justify-content: center;
   grid-template-columns: repeat(6, auto);
@@ -35,6 +38,7 @@ body {
 }
 .gc-card {
   box-sizing: border-box;
+  /* border-style: ridge; */
   font-size: 3em;
   text-align: center;
   padding: 12px;
