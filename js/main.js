@@ -36,12 +36,12 @@ var gc = {
     gc.playerhand = document.getElementById("player-cards");
     gc.playerbtns = document.getElementById("player-buttons");
 
-    document.getElementById("pb-start").addEventListener("click", gc.start);
+    document.getElementById("pb-start").addEventListener("click", gc.startGame);
     document.getElementById("pb-hit").addEventListener("click", gc.hitting);
     document.getElementById("pb-stand").addEventListener("click", gc.standing);
   },
 
-  start: function () {
+  startGame: function () {
     gc.deck = [];
     gc.dealercards = [];
     gc.playercards = [];
@@ -71,13 +71,13 @@ var gc = {
     }
 
     gc.turn = 0;
-    gc.draw();
+    gc.dealCards();
     gc.turn = 1;
-    gc.draw();
+    gc.dealCards();
     gc.turn = 0;
-    gc.draw();
+    gc.dealCards();
     gc.turn = 1;
-    gc.draw();
+    gc.dealCards();
 
     gc.turn = 0;
     gc.points();
@@ -91,8 +91,8 @@ var gc = {
 
   dsymbols: ["&hearts;", "&diams;", "&clubs;", "&spades;"],
   dnum: { 1: "A", 11: "J", 12: "Q", 13: "K" },
-  
-  draw: function () {
+
+  dealCards: function () {
     var card = gc.deck.pop(),
       cardh = document.createElement("div"),
       cardv =
@@ -205,7 +205,7 @@ var gc = {
   },
 
   hitting: function () {
-    gc.draw();
+    gc.dealCards();
     gc.points();
 
     if (gc.turn == 0 && gc.playerpoint == 21 && !gc.playerstanding) {
