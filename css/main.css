@@ -4,11 +4,12 @@
 }
 body {
   display: grid;
-  align-items: center;
-  justify-content: center;
   border-style: groove;
   background-color: rgb(8, 100, 12);
-  min-height: 100vmin;
+  min-height: 15vmin;
+  min-width: 10vmin;
+  max-height: 60vmin;
+  max-width: 45vmin;
   margin: 0;
   text-align: center;
 }
@@ -38,7 +39,6 @@ body {
 }
 .gc-card {
   box-sizing: border-box;
-  /* border-style: ridge; */
   font-size: 3em;
   text-align: center;
   padding: 12px;
@@ -46,7 +46,7 @@ body {
   background: #3bac53;
   border: 2px solid rgb(172, 221, 176);
 }
-#dealer-wrap { background: rgb(192, 255, 192); }
+#dealer-wrap { background: rgb(192, 255, 192);}
 #dealer-data { background: rgb(89, 102, 92); }
 #deal-first .front { display: none; } 
 #deal-first.show .back { display: none; }
