@@ -1,3 +1,4 @@
+
 const player = new Audio();
 const bgPlayer = document.getElementById("bg-player");
 const bgCheckbox = document.querySelector('input[type="checkbox"]');

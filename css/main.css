@@ -4,12 +4,9 @@
 }
 body {
   display: grid;
-  border-style: groove;
+  align-items: center;
   background-color: rgb(8, 100, 12);
-  min-height: 15vmin;
-  min-width: 10vmin;
-  max-height: 60vmin;
-  max-width: 45vmin;
+  height: 90vmin;
   margin: 0;
   text-align: center;
 }
