@@ -1,4 +1,3 @@
-
 const player = new Audio();
 const bgPlayer = document.getElementById("bg-player");
 const bgCheckbox = document.querySelector('input[type="checkbox"]');
@@ -17,7 +16,7 @@ var gc = {
   playerpoints: null,
   playerhand: null,
   playerbtns: null,
-
+// This lays out all elements/states to work with//
   deck: [],
   dealercards: [],
   playercards: [],
@@ -38,7 +37,7 @@ var gc = {
     gc.playerhand = document.getElementById("player-cards");
     gc.playerbtns = document.getElementById("player-buttons");
     gc.celebrate = document.getElementById("player-wrap");
-
+// Grabs all the interactive elements//
     document.getElementById("pb-start").addEventListener("click", gc.startGame);
     document.getElementById("pb-hit").addEventListener("click", gc.hitting);
     document.getElementById("pb-stand").addEventListener("click", gc.standing);
@@ -60,14 +59,14 @@ var gc = {
     gc.dealerstand.classList.remove("stood");
     gc.playerstand.classList.remove("stood");
     gc.playerbtns.classList.add("started");
-    // gc.celebrate.classList.add("nowin");
+// Transforms the game state//
 
     for (let i = 0; i < 4; i++) {
       for (let j = 1; j < 14; j++) {
         gc.deck.push({ s: i, n: j });
       }
     }
-
+// Makes a suit of cards//
     for (let i = gc.deck.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * i);
       let temp = gc.deck[i];
@@ -93,6 +92,7 @@ var gc = {
       gc.turn = 0;
     }
   },
+// Dictates card rotation//
 
   dsymbols: ["&hearts;", "&diams;", "&clubs;", "&spades;"],
   dnum: { 1: "A", 11: "J", 12: "Q", 13: "K" },
@@ -116,6 +116,7 @@ var gc = {
       gc.playerhand.appendChild(cardh);
     }
   },
+// Creates a suit card with value of the random number and symbol//
 
   points: function () {
     var aces = 0,
@@ -129,7 +130,6 @@ var gc = {
         points += i.n;
       }
     }
-
     if (aces != 0) {
       var minmax = [];
       for (let elevens = 0; elevens <= aces; elevens++) {
@@ -143,7 +143,6 @@ var gc = {
         }
       }
     }
-
     if (gc.turn) {
       gc.dealerpoint = points;
     } else {
@@ -151,40 +150,34 @@ var gc = {
       gc.playerpoints.innerHTML = points;
     }
   },
-
+// Calculates current points//
   checkWinner: function () {
     var winner = null,
       message = "";
-
     if (gc.playercards.length == 2 && gc.dealercards.length == 2) {
       if (gc.playerpoint == 21 && gc.dealerpoint == 21) {
         winner = 2;
         message = "It's a tie with Blackjacks";
       }
-
       if (winner == null && gc.playerpoint == 21) {
         winner = 0;
         message = "Player wins with Blackjack!";
       }
-
       if (winner == null && gc.dealerpoint == 21) {
         winner = 1;
         message = "Dealer wins with Blackjack!";
       }
     }
-
     if (winner == null) {
       if (gc.playerpoint > 21) {
         winner = 1;
         message = "Player has busted! Dealer wins!";
       }
-
       if (gc.dealerpoint > 21) {
         winner = 0;
         message = "Dealer has busted! - Player wins!";
       }
     }
-
     if (winner == null && gc.dealerstanding && gc.playerstanding) {
       if (gc.dealerpoint > gc.playerpoint) {
         winner = 1;
@@ -197,13 +190,11 @@ var gc = {
         message = "It's a tie!";
       }
     }
-
     if (winner != null) {
       gc.dealerpoints.innerHTML = gc.dealerpoint;
       document.getElementById("deal-first").classList.add("show");
-      document.getElementById("player-wrap").innerHTML += message
+      document.getElementById("player-wrap").innerHTML += message;
       gc.playerbtns.classList.remove("started");
-      
     }
     return winner;
   },
@@ -211,7 +202,6 @@ var gc = {
   hitting: function () {
     gc.dealCards();
     gc.points();
-
     if (gc.turn == 0 && gc.playerpoint == 21 && !gc.playerstanding) {
       gc.playerstanding = true;
       gc.playerstand.classList.add("stood");
@@ -220,7 +210,6 @@ var gc = {
       gc.dealerstanding = true;
       gc.dealerstand.classList.add("stood");
     }
-
     var winner = gc.checkWinner();
     if (winner == null) {
       gc.nextTurn();
@@ -235,7 +224,6 @@ var gc = {
       gc.playerstanding = true;
       gc.playerstand.classList.add("stood");
     }
-
     var winner =
       gc.playerstanding && gc.dealerstanding ? gc.checkWinner() : null;
     if (winner == null) {
