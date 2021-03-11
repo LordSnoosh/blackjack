@@ -27,6 +27,7 @@ var gc = {
   dealerstanding: false,
   playerstanding: false,
   turn: 0,
+  celebrate: null,
 
   init: function () {
     gc.dealerstand = document.getElementById("dealer-stand");
@@ -36,6 +37,7 @@ var gc = {
     gc.playerpoints = document.getElementById("player-points");
     gc.playerhand = document.getElementById("player-cards");
     gc.playerbtns = document.getElementById("player-buttons");
+    gc.celebrate = document.getElementById("player-wrap");
 
     document.getElementById("pb-start").addEventListener("click", gc.startGame);
     document.getElementById("pb-hit").addEventListener("click", gc.hitting);
@@ -54,9 +56,11 @@ var gc = {
     gc.playerpoints.innerHTML = 0;
     gc.dealerhand.innerHTML = "";
     gc.playerhand.innerHTML = "";
+    gc.celebrate.innerHTML = "";
     gc.dealerstand.classList.remove("stood");
     gc.playerstand.classList.remove("stood");
     gc.playerbtns.classList.add("started");
+    // gc.celebrate.classList.add("nowin");
 
     for (let i = 0; i < 4; i++) {
       for (let j = 1; j < 14; j++) {
@@ -197,10 +201,9 @@ var gc = {
     if (winner != null) {
       gc.dealerpoints.innerHTML = gc.dealerpoint;
       document.getElementById("deal-first").classList.add("show");
-
+      document.getElementById("player-wrap").innerHTML += message
       gc.playerbtns.classList.remove("started");
-
-      alert(message);
+      
     }
     return winner;
   },
