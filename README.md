@@ -14,6 +14,10 @@ SCREENSHOTS
 ![screenshot 2](/blackjack/images/blackjackscreen2.png)
 ![screenshot 3](/blackjack/images/blackjackscreen4.png)
 ![screenshot 4](/blackjack/images/blackjackscreen6.png)
+<<<<<<< HEAD
+=======
+
+>>>>>>> gh-pages
  INTRODUCTION
 ---------------------------
 Blackjack is the American member of a global family of banking games known as Twenty-One. It is a card game between one or more players and a dealer, where each player in turn competes against that dealer, but not eachother.It is played with one or more decks of 52 cards, and is the most widely played casino banking game in the world.
