@@ -10,12 +10,14 @@ CONTENTS OF THIS FILE
 
 SCREENSHOTS
 ---------------------------
-<img src="https://i.imgur.com/0eHJtOW.png>
+![screenshot1](https://i.imgur.com/0eHJtOW.png)
+![screenshot2](https://i.imgur.com/k89xrWf.png)
+![screenshot3](https://i.imgur.com/5cyQRG1.png)
+![screenshot4](https://i.imgur.com/kxpXtQh.png)
 
-<<<<<<< HEAD
-=======
 
->>>>>>> gh-pages
+
+
  INTRODUCTION
 ---------------------------
 Blackjack is the American member of a global family of banking games known as Twenty-One. It is a card game between one or more players and a dealer, where each player in turn competes against that dealer, but not eachother.It is played with one or more decks of 52 cards, and is the most widely played casino banking game in the world.
