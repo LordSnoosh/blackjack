@@ -1,12 +1,19 @@
 # blackjack
 CONTENTS OF THIS FILE
 ---------------------------
-
+ * Screenshots
  * Introduction
  * Requirements
  * Installation
  * Configuration
  * Maintainers
+
+SCREENSHOTS
+---------------------------
+![screenshot 1](/blackjack/images/blackjackscreen1.png)
+![screenshot 2](/blackjack/images/blackjackscreen2.png)
+![screenshot 3](/blackjack/images/blackjackscreen4.png)
+![screenshot 4](/blackjack/images/blackjackscreen6.png)
 
  INTRODUCTION
 ---------------------------
